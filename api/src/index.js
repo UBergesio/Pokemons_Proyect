@@ -27,7 +27,7 @@ server.use("/pokemons", router);
 const PORT = 3001;
 
 conn
-  .sync({ alter: true })
+  .sync({ force: true })
   .then(() => {
     server.listen(PORT, () => {
       console.log("Server raised in port: " + PORT);

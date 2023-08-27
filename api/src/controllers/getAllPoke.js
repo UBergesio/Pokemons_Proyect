@@ -43,9 +43,22 @@ const getAllPoke = async (req, res) => {
           })
           await objPoke.addPokemon_types(types);
 
+          const objPoke2 = {
+            id: data.id,
+            nombre: data.name,
+            imagen: data.sprites.other.dream_world.front_default,
+            vida: data.stats[0].base_stat,
+            ataque: data.stats[1].base_stat,
+            defensa: data.stats[2].base_stat,
+            velocidad: data.stats[5].base_stat,
+            altura: data.height,
+            peso: data.weight,
+            tipos: types
+          };
+
           // Agregar el Pokémon al array de resultados
-          allPokemons.push(objPoke);
-      
+          allPokemons.push(objPoke2);
+          
         } catch (error) {
           res.status(500).json({ error: error.message });
         }

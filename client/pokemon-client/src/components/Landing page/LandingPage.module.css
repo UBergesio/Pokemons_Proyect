@@ -1,0 +1,27 @@
+.content{
+  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start; /* Alinea el contenido a la izquierda */
+  width: 25vw; /* Un cuarto del ancho de la pantalla */
+  padding: 20px;
+}
+
+.botones{
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.4em;
+  margin-top: auto;
+  background-color: black;
+  color: white;
+  border-color: white;
+  height: 2em;
+  width: 20em;
+  margin-left: 6em;
+  cursor: pointer;
+}
