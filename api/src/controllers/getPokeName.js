@@ -23,7 +23,7 @@ const getPokeName = async (req, res) => {
       velocidad: data.stats[5].base_stat,
       altura: data.height,
       peso: data.weight,
-      Tipos: types,
+      tipos: types,
     };
 
     // ! PARA BUSCAR EN LA DATABASE

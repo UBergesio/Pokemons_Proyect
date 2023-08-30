@@ -1,4 +1,4 @@
-import { ADD_ALL_POKE, ADD_TYPES } from "./actions";
+import { ADD_ALL_POKE, ADD_POKE_NAME, ADD_TYPES } from "./actions";
 
 const initialState = {
   allPokemons: [],
@@ -7,21 +7,26 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ADD_POKE_NAME:
+      return {
+        ...state,
+        allPokemons: [action.payload, ...state.allPokemons],
+      };
+
     case ADD_TYPES:
       return {
         ...state,
-        allTypes: action.payload
-      }
+        allTypes: action.payload,
+      };
 
     case ADD_ALL_POKE:
       return {
         ...state,
-        allPokemons: action.payload
+        allPokemons: action.payload,
       };
-    
-    
-      default:
-         return { ...state };
+
+    default:
+      return { ...state };
   };
 }
 

@@ -9,6 +9,7 @@ const getAllPoke = async (req, res) => {
     const { data } = response;
 
    // ! PARA MOSTRAR LOS POKEMONS EN PANTALLA
+      //Saco el id de cada pokemon a travez de la url que devuelve la api.
     const pokemonNumbers = data.results.map((pokemon) => {
       const parts = pokemon.url.split("/");
       return parts[parts.length - 2];
@@ -43,7 +44,7 @@ const getAllPoke = async (req, res) => {
           })
           await objPoke.addPokemon_types(types);
 
-          const objPoke2 = {
+          const objPokeWithType = {
             id: data.id,
             nombre: data.name,
             imagen: data.sprites.other.dream_world.front_default,
@@ -57,7 +58,7 @@ const getAllPoke = async (req, res) => {
           };
 
           // Agregar el Pokémon al array de resultados
-          allPokemons.push(objPoke2);
+          allPokemons.push(objPokeWithType);
           
         } catch (error) {
           res.status(500).json({ error: error.message });

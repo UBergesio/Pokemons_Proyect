@@ -1,0 +1,33 @@
+.container {
+  margin-top: 0.5em;
+  margin-right: 1em;
+  float: right;
+  background-color: black;
+  color: white;
+  height: 2em;
+  width: 14em;
+  border-radius: 2em;
+  transform: scale(var(--escala, 1));
+  font-size: large;
+}
+.btn {
+  margin-top: 0.5em;
+  margin-right: 0.5em;
+  float: right;
+  color: white;
+  background-color: black;
+  border-radius: 2em;
+  height: 2em;
+  width: 5em;
+  transform: scale(var(--escala, 1));
+  font-size: large;
+}
+
+.btn:hover {
+  cursor: pointer;
+  --escala: 1.1;
+}
+.container:hover {
+  cursor: pointer;
+  --escala: 1.1;
+}

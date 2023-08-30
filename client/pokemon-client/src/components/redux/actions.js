@@ -1,6 +1,7 @@
 import axios from 'axios';
 export const ADD_ALL_POKE = "ADD_ALL_POKE";
 export const ADD_TYPES = "ADD_TYPES";
+export const ADD_POKE_NAME = "ADD_POKE_NAME"
 
 
 export const addTypes = (types) => {
@@ -34,3 +35,10 @@ export const addPoke = (pokemon) => {
     }
   }
 }
+
+export const addPokeName = (pokemon) => {
+  return {
+    type: ADD_POKE_NAME,
+    payload: pokemon,
+  };
+};
