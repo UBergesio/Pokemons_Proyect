@@ -17,7 +17,7 @@ const NavBar = () => {
       dispatch(addPokeName(searchResult)); // Agregar el resultado a Redux
       setSearchResult(null); // Limpiar el resultado de búsqueda
     } else {
-      alert("No hay pokemons con ese nombre");
+      window.alert("No hay pokemons con ese nombre");
     }
   };
 

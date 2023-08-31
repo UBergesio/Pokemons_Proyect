@@ -1,0 +1,18 @@
+.btn {
+  color: white;
+  background-color: black;
+  border-radius: 2em;
+  transform: scale(var(--escala, 1));
+  font-size: medium;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.btn:hover {
+  cursor: pointer;
+  --escala: 1.1;
+}
+.container:hover {
+  cursor: pointer;
+  --escala: 1.1;
+}

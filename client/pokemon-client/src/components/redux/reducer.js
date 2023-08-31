@@ -1,12 +1,20 @@
-import { ADD_ALL_POKE, ADD_POKE_NAME, ADD_TYPES } from "./actions";
+import { ADD_ALL_POKE, ADD_POKE_NAME, ADD_TYPES, SET_PAGE } from "./actions";
 
 const initialState = {
   allPokemons: [],
   allTypes: [],
+  currentPage: 1,
+  pokemonsPerPage: 12,
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_PAGE:
+      return {
+        ...state,
+        currentPage: action.payload,
+      };
+
     case ADD_POKE_NAME:
       return {
         ...state,
@@ -27,7 +35,7 @@ const rootReducer = (state = initialState, action) => {
 
     default:
       return { ...state };
-  };
-}
+  }
+};
 
-export default rootReducer
+export default rootReducer;

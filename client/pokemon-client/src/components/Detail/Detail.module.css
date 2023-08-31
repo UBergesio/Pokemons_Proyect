@@ -1,0 +1,33 @@
+.containerTexto{
+  font-family: 'Roboto', sans-serif;
+  flex-wrap: wrap;
+  float:left;
+  background-color: rgba(0, 0, 0,0.74);
+  height: 100%;
+  padding: 2em;
+  width: 50%;
+}
+.titulo{
+  font-size: 3em;
+  color: coral;
+  background-color: rgba(0, 0, 0);
+  
+}
+.description{
+  font-size: 1.770em;
+  color: rgb(214, 196, 27);
+}
+.img {
+  flex-wrap: wrap;
+  float: right;
+  width: 14em;
+  margin-right: 15%;
+  margin-top: 9em;
+}
+
+.id{
+  font-size: xx-small;
+  color: rgb(214, 196, 27);
+  margin-top: -1em;
+  margin-bottom: -1em;
+}

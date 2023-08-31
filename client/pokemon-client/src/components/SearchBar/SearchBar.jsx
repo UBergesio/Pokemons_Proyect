@@ -18,6 +18,7 @@ const SearchBar = (props) => {
       props.handleSearchResult(data); // Pasar el resultado al componente padre
     } catch (error) {
       console.error(error);
+      window.alert("No existen pokemons con ese nombre");
     }
   };
 

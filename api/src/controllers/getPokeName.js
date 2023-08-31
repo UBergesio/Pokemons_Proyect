@@ -38,7 +38,7 @@ const getPokeName = async (req, res) => {
       },
     });
 
-    if (objPoke) {
+    if (data) {
       res.status(200).json(objPoke);
     } else if (searchNameDB) {
       res.status(200).json(searchNameDB);

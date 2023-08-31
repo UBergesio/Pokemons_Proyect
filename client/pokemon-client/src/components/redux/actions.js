@@ -1,44 +1,51 @@
-import axios from 'axios';
+import axios from "axios";
 export const ADD_ALL_POKE = "ADD_ALL_POKE";
 export const ADD_TYPES = "ADD_TYPES";
-export const ADD_POKE_NAME = "ADD_POKE_NAME"
-
+export const ADD_POKE_NAME = "ADD_POKE_NAME";
+export const SET_PAGE = "SET_PAGE";
 
 export const addTypes = (types) => {
   const endpoint = "http://localhost:3001/pokemons/types";
   return async (dispatch) => {
     try {
-      const response = await axios.get(endpoint)
+      const response = await axios.get(endpoint);
       const { data } = response;
       return dispatch({
         type: ADD_TYPES,
-        payload: data
-      })
+        payload: data,
+      });
     } catch (error) {
       window.alert(error.message);
     }
-  }
-}
+  };
+};
 
 export const addPoke = (pokemon) => {
   const endpoint = "http://localhost:3001/pokemons";
   return async (dispatch) => {
     try {
-      const response = await axios.get(endpoint)
+      const response = await axios.get(endpoint);
       const { data } = response;
       return dispatch({
         type: ADD_ALL_POKE,
         payload: data,
-      })
+      });
     } catch (error) {
-      window.alert(error.message)
+      window.alert(error.message);
     }
-  }
-}
+  };
+};
 
 export const addPokeName = (pokemon) => {
   return {
     type: ADD_POKE_NAME,
     payload: pokemon,
+  };
+};
+
+export const setPage = (pageNumber) => {
+  return {
+    type: SET_PAGE,
+    payload: pageNumber,
   };
 };

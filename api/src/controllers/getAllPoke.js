@@ -8,8 +8,8 @@ const getAllPoke = async (req, res) => {
     const response = await axios.get(`${URL}`);
     const { data } = response;
 
-   // ! PARA MOSTRAR LOS POKEMONS EN PANTALLA
-      //Saco el id de cada pokemon a travez de la url que devuelve la api.
+    // ! PARA MOSTRAR LOS POKEMONS EN PANTALLA
+    //Saco el id de cada pokemon a travez de la url que devuelve la api.
     const pokemonNumbers = data.results.map((pokemon) => {
       const parts = pokemon.url.split("/");
       return parts[parts.length - 2];
@@ -23,15 +23,13 @@ const getAllPoke = async (req, res) => {
           const pokeById = await axios.get(`${URL}${id}`);
           const { data } = pokeById;
 
-          const types = data.types.map((type) =>
-          {
-            const partsType = type.type.url.split("/")
-          return partsType[partsType.length - 2];
-          }
-          );
-          
+          const types = data.types.map((type) => {
+            const partsType = type.type.url.split("/");
+            return partsType[partsType.length - 2];
+          });
+
           // ! Guardar el Pokémon en la base de datos
-          const objPoke =await Pokemon.create({
+          const objPoke = await Pokemon.create({
             id: data.id,
             nombre: data.name,
             imagen: data.sprites.other.dream_world.front_default,
@@ -41,7 +39,7 @@ const getAllPoke = async (req, res) => {
             velocidad: data.stats[5].base_stat,
             altura: data.height,
             peso: data.weight,
-          })
+          });
           await objPoke.addPokemon_types(types);
 
           const objPokeWithType = {
@@ -54,12 +52,11 @@ const getAllPoke = async (req, res) => {
             velocidad: data.stats[5].base_stat,
             altura: data.height,
             peso: data.weight,
-            tipos: types
+            tipos: types,
           };
 
           // Agregar el Pokémon al array de resultados
           allPokemons.push(objPokeWithType);
-          
         } catch (error) {
           res.status(500).json({ error: error.message });
         }
