@@ -1,5 +1,5 @@
 .container {
-  margin-top: 0.5em;
+  
   margin-right: 1em;
   float: right;
   background-color: black;
@@ -11,7 +11,7 @@
   font-size: large;
 }
 .btn {
-  margin-top: 0.5em;
+  
   margin-right: 0.5em;
   float: right;
   color: white;

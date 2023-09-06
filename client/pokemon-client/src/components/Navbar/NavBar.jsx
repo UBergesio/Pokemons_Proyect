@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SearchBar from "../SearchBar/SearchBar";
 import { useDispatch } from "react-redux";
 import { addPokeName } from "../redux/actions";
+import { Link } from "react-router-dom";
 import style from "./NavBar.module.css";
 
 const NavBar = () => {
@@ -24,6 +25,12 @@ const NavBar = () => {
   return (
     <div>
       <div className={style.containerBar}>
+        <Link to={"/form"}>
+          <button className={style.btn}>Crear Pokemon</button>
+        </Link>
+        <Link to={"/home"}>
+          <button className={style.btn}>Home</button>
+        </Link>
         <SearchBar handleSearchResult={handleSearchResult} />
       </div>
       {searchResult && (

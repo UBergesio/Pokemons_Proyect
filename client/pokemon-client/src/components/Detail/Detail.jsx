@@ -32,8 +32,8 @@ const Detail = () => {
   };
 
   return (
-    <div>
-        <img className={style.img} src={pokemon.imagen} alt={pokemon.nombre} />
+    <div className={style.divBackGround}>
+    <img className={style.img} src={pokemon.imagen} alt={pokemon.nombre} />
       <div className={style.containerTexto}>
         <h6 className={style.id}>ID: {pokemon.id}</h6>
         <h2 className={style.titulo}>{pokemon.nombre}</h2>

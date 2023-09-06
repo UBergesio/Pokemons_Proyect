@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Card(props) {
   return (
-    <Link to={`/detail/${props.nombre}`}>
+    <Link className={style.link} to={`/detail/${props.nombre}`}>
       <div className={style.container}>
         <h2 className={style.nombres}>{props.nombre}</h2>
         <img className={style.image} src={props.imagen} alt={props.nombre} />

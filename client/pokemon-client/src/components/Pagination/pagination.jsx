@@ -1,6 +1,16 @@
 import style from "./Pagination.module.css";
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+const Pagination = ({ currentPage, totalPages, onPageChange, totalPagesFilter }) => {
+    let pokemonListToRender;
+
+    if (totalPagesFilter) {
+      pokemonListToRender = totalPagesFilter;
+    } else {
+      pokemonListToRender = totalPages;
+    }
+
+  
+  
   return (
     <div>
       <button
@@ -11,12 +21,12 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         Anterior
       </button>
       <span>
-        Página {currentPage} de {totalPages}
+        Página {currentPage} de {pokemonListToRender}
       </span>
       <button
         className={style.btn}
         onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
+        disabled={currentPage === pokemonListToRender}
       >
         Siguiente
       </button>

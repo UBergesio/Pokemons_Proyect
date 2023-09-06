@@ -16,6 +16,7 @@ const getAllPoke = async (req, res) => {
     });
 
     const allPokemons = [];
+    const errors = [];
 
     await Promise.all(
       pokemonNumbers.map(async (id) => {
@@ -58,19 +59,21 @@ const getAllPoke = async (req, res) => {
           // Agregar el Pokémon al array de resultados
           allPokemons.push(objPokeWithType);
         } catch (error) {
-          res.status(500).json({ error: error.message });
+          errors.push(error.message);
         }
       })
     );
 
-    if (allPokemons.length > 0) {
-      // Responder con los datos de todos los Pokémon
-      res.status(200).json(allPokemons);
+    if (errors.length > 0) {
+     return res.status(500).json({ errors });
+    } else if (allPokemons.length > 0) {
+     return res.status(200).json(allPokemons);
     } else {
-      res.status(404).send("Not found");
+     return res.status(404).send("Not found");
     }
   } catch (error) {
     res.status(500).json({ error: error.message });
+    return;
   }
 };
 

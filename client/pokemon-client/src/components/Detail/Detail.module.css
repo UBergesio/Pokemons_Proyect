@@ -1,20 +1,22 @@
-.containerTexto{
-  font-family: 'Roboto', sans-serif;
+.divBackGround {
+  background-image: url(../../img/pikachu\ y\ sus\ amigos.png);
+}
+.containerTexto {
+  font-family: "Roboto", sans-serif;
   flex-wrap: wrap;
-  float:left;
-  background-color: rgba(0, 0, 0,0.74);
+  /* float:left; */
+  background-color: rgba(0, 0, 0, 0.74);
   height: 100%;
   padding: 2em;
   width: 50%;
 }
-.titulo{
+.titulo {
   font-size: 3em;
   color: coral;
   background-color: rgba(0, 0, 0);
-  
 }
-.description{
-  font-size: 1.770em;
+.description {
+  font-size: 1.77em;
   color: rgb(214, 196, 27);
 }
 .img {
@@ -25,7 +27,7 @@
   margin-top: 9em;
 }
 
-.id{
+.id {
   font-size: xx-small;
   color: rgb(214, 196, 27);
   margin-top: -1em;

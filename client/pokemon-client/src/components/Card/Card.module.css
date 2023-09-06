@@ -9,7 +9,9 @@
   }
 }
 
-
+.link{
+  text-decoration: none;
+}
 .container{
   animation: slideInLeft 0.5s ease-in-out;
   width: 15em;

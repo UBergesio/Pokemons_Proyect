@@ -1,0 +1,9 @@
+.container{
+  backdrop-filter: blur(6px);
+}
+
+.order {
+  display: flex; /* Activa el modelo de caja flexible */
+  justify-content: space-around; /* Distribuye el espacio entre los elementos */
+  align-items: center; /* Centra verticalmente los elementos */
+}
