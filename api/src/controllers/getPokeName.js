@@ -4,11 +4,9 @@ const { Pokemon, Pokemon_type } = require("../DB_connection");
 const URL = "https://pokeapi.co/api/v2/pokemon/";
 
 const getPokeName = async (req, res) => {
-  const { name } = req.query; 
-  
-  const nameMinuscula = name.toLowerCase()
-  
-  // ! PARA BUSCAR EN LA API
+  const { name } = req.query;
+  const nameMinuscula = name.toLowerCase();
+
   try {
     const response = await axios.get(`${URL}${nameMinuscula}`);
     const { data } = response;
@@ -26,27 +24,28 @@ const getPokeName = async (req, res) => {
       tipos: types,
     };
 
-    // ! PARA BUSCAR EN LA DATABASE
-    const searchNameDB = await Pokemon.findOne({
-      where: { nombre: nameMinuscula },
-      include: {
-        model: Pokemon_type,
-        attributes: ["nombre"],
-        through: {
-          attributes: [],
-        },
-      },
-    });
-
-    if (data) {
-      res.status(200).json(objPoke);
-    } else if (searchNameDB) {
-      res.status(200).json(searchNameDB);
-    } else {
-      res.status(404).send("No existen Pokemons con ese nombre.");
-    }
+    res.status(200).json(objPoke);
   } catch (error) {
-    res.status(500).json({error: error.message});
+    try {
+      const searchNameDB = await Pokemon.findOne({
+        where: { nombre: nameMinuscula },
+        include: {
+          model: Pokemon_type,
+          attributes: ["nombre"],
+          through: {
+            attributes: [],
+          },
+        },
+      });
+
+      if (searchNameDB) {
+        res.status(200).json(searchNameDB);
+      } else {
+        res.status(404).send("No existen Pokemons con ese nombre.");
+      }
+    } catch (dbError) {
+      res.status(500).json({ error: dbError.message });
+    }
   }
 };
 

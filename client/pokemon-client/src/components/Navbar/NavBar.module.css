@@ -87,7 +87,7 @@
   margin-right: 0.5em;
   margin-left: 1em;
   float: right;
-  color: white;
+  color: #f0f0f0a9;
   background-color: black;
   border-radius: 1em;
   height: 2em;
@@ -99,6 +99,8 @@
 .btn:hover {
   cursor: pointer;
   --escala: 1.1;
+    color: rgb(0, 0, 0);
+  background-color: #c0c0c0;
 }
 
 .containerBar{

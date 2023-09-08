@@ -6,6 +6,7 @@ import {
   ORDER,
   ORDER_ATTACK,
   FILTER,
+  CREATE_POKE,
 } from "./actions";
 
 const initialState = {
@@ -18,6 +19,12 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case CREATE_POKE:
+      return {
+        ...state,
+        allPokemons: [action.payload, ...state.allPokemons]
+      }
+
     case SET_PAGE:
       return {
         ...state,

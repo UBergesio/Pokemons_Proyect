@@ -6,6 +6,45 @@ export const SET_PAGE = "SET_PAGE";
 export const ORDER = "ORDER";
 export const ORDER_ATTACK = "ORDER_ATTACK";
 export const FILTER = "FILTER";
+export const CREATE_POKE = "CREATE_POKE";
+
+export const createPoke = (pokemonData) => {
+  const endpoint = "http://localhost:3001/pokemons";
+  const {
+    nombre,
+    imagen,
+    vida,
+    ataque,
+    defensa,
+    velocidad,
+    altura,
+    peso,
+    tipos,
+  } = pokemonData;
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        endpoint,
+        {nombre,
+        imagen,
+        vida,
+        ataque,
+        defensa,
+        velocidad,
+        altura,
+        peso,
+        tipos}
+      );
+      const { data } = response;
+      return dispatch({
+        type: CREATE_POKE,
+        payload: data,
+      });
+    } catch (error) {
+      window.alert(error.message);
+    }
+  };
+};
 
 export const addTypes = (types) => {
   const endpoint = "http://localhost:3001/pokemons/types";
