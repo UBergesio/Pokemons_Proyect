@@ -21,6 +21,7 @@ const NavBar = () => {
       window.alert("No hay pokemons con ese nombre");
     }
   };
+  console.log(searchResult)
 
   return (
     <div>
@@ -43,8 +44,7 @@ const NavBar = () => {
               alt={searchResult.nombre}
             />
             <h2 className={style.descriptionOrigin}>
-              {" "}
-              Tipos: {searchResult.tipos}
+              Tipos: {searchResult.tiposName}
             </h2>
           </div>
           <button className={style.btn} onClick={handleAddPokemonName}>

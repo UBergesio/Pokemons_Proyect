@@ -7,6 +7,7 @@ import {
   ORDER_ATTACK,
   FILTER,
   CREATE_POKE,
+  FILTER_DB,
 } from "./actions";
 
 const initialState = {
@@ -14,7 +15,7 @@ const initialState = {
   allTypes: [],
   currentPage: 1,
   pokemonsPerPage: 12,
-  pokeFilter:[],
+  pokeFilter: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -22,7 +23,8 @@ const rootReducer = (state = initialState, action) => {
     case CREATE_POKE:
       return {
         ...state,
-        allPokemons: [action.payload, ...state.allPokemons]
+        allPokemons: [action.payload, ...state.allPokemons],
+        pokeFilter: [action.payload, ...state.allPokemons]
       }
 
     case SET_PAGE:
@@ -35,6 +37,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allPokemons: [action.payload, ...state.allPokemons],
+        pokeFilter: [action.payload, ...state.allPokemons],
       };
 
     case ADD_TYPES:
@@ -47,6 +50,7 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         allPokemons: action.payload,
+        pokeFilter: action.payload,
       };
 
     case ORDER:
@@ -62,28 +66,51 @@ const rootReducer = (state = initialState, action) => {
           return b.nombre.localeCompare(a.nombre);
         });
       }
-      return { ...state, allPokemons: allPokemonsOrder };
+      return { ...state, pokeFilter: allPokemonsOrder };
 
     case ORDER_ATTACK:
-      const allPokemonsAttack = [...state.allPokemons];
+      const allPokemonsAttack = [...state.pokeFilter];
       if (action.payload === "A") {
         allPokemonsAttack.sort((a, b) => a.ataque - b.ataque);
       } else if (action.payload === "D") {
         allPokemonsAttack.sort((a, b) => b.ataque - a.ataque);
       }
-      return { ...state, allPokemons: allPokemonsAttack };
+      return { ...state, pokeFilter: allPokemonsAttack };
 
     case FILTER:
       if (action.payload === "All") {
         return { ...state, pokeFilter: state.allPokemons };
       } else {
-        const allPokeFilter = state.allPokemons.filter(
-          (poke) => 
-        poke.tipos.find((tipo) => tipo === action.payload)
+        const allPokeFilter = state.allPokemons.filter((poke) =>
+          poke.tipos.find((tipo) => tipo === Number(action.payload))
         );
+        if(allPokeFilter.length === 0){
+          window.alert("No hay pokemons con ese tipo actualmente")
+        return { ...state, pokeFilter: [...state.allPokemons] };
+        }
         return { ...state, pokeFilter: allPokeFilter };
       }
 
+    case FILTER_DB:
+      if (action.payload === "A") {
+        return {...state, pokeFilter: state.allPokemons}
+      } else if (action.payload === "B") {
+        const pokeApi = state.allPokemons.filter(
+          (poke)=> poke.id < parseInt(808)
+        )
+        return {...state, pokeFilter: pokeApi}
+      } else if (action.payload === "C") {
+        const pokeDB = state.allPokemons.filter(
+          (poke) => poke.id >= parseInt(808)
+        )
+        if (pokeDB.length === 0) {
+          window.alert("Aun no creaste Pokemons")
+        return { ...state, pokeFilter: [...state.allPokemons] };
+        }
+        return {...state, pokeFilter: pokeDB}
+      }
+
+    // eslint-disable-next-line no-fallthrough
     default:
       return { ...state };
   }

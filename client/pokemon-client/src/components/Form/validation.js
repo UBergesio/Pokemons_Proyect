@@ -22,7 +22,7 @@ const validate = (pokeData) => {
   if (!pokeData.imagen) {
     errors.imagen = "*Se requiere la URL de una imagen";
   } else if (!regexImagen.test(pokeData.imagen)) {
-    errors.imagen = "*Solo se admite la imagen a travez de URL";
+    errors.imagen = "*Debes copiar y pegar el vinculo de la imagen";
   }
 
   // ? ERRORES DE VARIOS OBLIGATORIOS

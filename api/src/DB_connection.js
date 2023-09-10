@@ -21,6 +21,7 @@ const { Pokemon, Pokemon_type } = sequelize.models;
 Pokemon.belongsToMany(Pokemon_type, { through: "pokemon_type" });
 Pokemon_type.belongsToMany(Pokemon, { through: "pokemon_type" });
 
+
 module.exports = {
   Pokemon,
   Pokemon_type,

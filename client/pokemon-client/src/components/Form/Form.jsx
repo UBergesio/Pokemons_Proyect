@@ -14,9 +14,9 @@ const Form = (props) => {
     vida: "",
     ataque: "",
     defensa: "",
-    velocidad: "",
-    altura: "", 
-    peso: "", 
+    velocidad: null,
+    altura: null, 
+    peso: null, 
     tipos: [],
   });
 
@@ -57,8 +57,13 @@ const Form = (props) => {
       ...pokeData,
       tipos: selectedTypes,
     };
-    const hayError = Object.values(errors).filter((error)=>
-    error !== "")
+    const hayError = Object.values(errors).filter(
+      (error) =>
+        error !== "" &&
+        error !== errors.velocidad &&
+        error !== errors.altura &&
+        error !== errors.peso
+    );
     if (hayError.length === 0) {
       dispatch(createPoke(pokemonData));
       setErrors({})
@@ -197,22 +202,23 @@ const Form = (props) => {
       </button>
 
       <div className={style.divP}>
-        {errors.nombre && <p className={style.p}>{errors.nombre}</p>}
+        {pokeData.nombre !== "" && <p className={style.p}>{errors.nombre}</p>}
         <br />
         {errors.imagen && <p className={style.p}>{errors.imagen}</p>}
         <br />
-        {errors.vida && <p className={style.p}>{errors.vida}</p>}
+        {pokeData.vida !== "" && <p className={style.p}>{errors.vida}</p>}
         <br />
-        {errors.ataque && <p className={style.p}>{errors.ataque}</p>}
+        {pokeData.ataque !== "" && <p className={style.p}>{errors.ataque}</p>}
         <br />
-        {errors.defensa && <p className={style.p}>{errors.defensa}</p>}
+        {pokeData.defensa !== "" && <p className={style.p}>{errors.defensa}</p>}
         <br />
-        {errors.velocidad && <p className={style.p}>{errors.velocidad}</p>}
+        {pokeData.velocidad !== null && pokeData.velocidad !==""&& <p className={style.p}>{errors.velocidad}</p>}
         <br />
-        {errors.altura && <p className={style.p}>{errors.altura}</p>}
+        {pokeData.altura !== null && pokeData.altura !== "" && <p className={style.p}>{errors.altura}</p>}
         <br />
-        {errors.peso && <p className={style.p}>{errors.peso}
+        {pokeData.peso !== null && pokeData.peso !=="" && <p className={style.p}>{errors.peso}
         </p>}
+        {pokeData.tipos.length === 0 && <p className={style.p}>*Debes seleccionar los tipos de tu pokemon.</p>}
       </div>
     </div>
   );

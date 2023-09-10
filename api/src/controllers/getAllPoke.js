@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Pokemon } = require("../DB_connection");
+const { Pokemon, conn } = require("../DB_connection")
 
 const URL = "https://pokeapi.co/api/v2/pokemon/";
 
@@ -43,6 +43,12 @@ const getAllPoke = async (req, res) => {
           });
           await objPoke.addPokemon_types(types);
 
+          const searchTypeDB = await conn.models.pokemon_type.findAll({
+            where: { PokemonId: data.id },
+            attributes: ["PokemonTypeId"],
+          });
+          const pokemonTypeIds = searchTypeDB.map((row) => row.PokemonTypeId);
+
           const objPokeWithType = {
             id: data.id,
             nombre: data.name,
@@ -53,7 +59,7 @@ const getAllPoke = async (req, res) => {
             velocidad: data.stats[5].base_stat,
             altura: data.height,
             peso: data.weight,
-            tipos: types,
+            tipos: pokemonTypeIds,
           };
 
           // Agregar el Pokémon al array de resultados
@@ -65,11 +71,11 @@ const getAllPoke = async (req, res) => {
     );
 
     if (errors.length > 0) {
-     return res.status(500).json({ errors });
+      return res.status(500).json({ errors });
     } else if (allPokemons.length > 0) {
-     return res.status(200).json(allPokemons);
+      return res.status(200).json(allPokemons);
     } else {
-     return res.status(404).send("Not found");
+      return res.status(404).send("Not found");
     }
   } catch (error) {
     res.status(500).json({ error: error.message });

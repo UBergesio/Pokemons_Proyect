@@ -1,12 +1,13 @@
 .divBackGround {
   background-image: url(../../img/pikachu\ y\ sus\ amigos.png);
+  background-position: 13em -4.3em;
 }
 .containerTexto {
   font-family: "Roboto", sans-serif;
   flex-wrap: wrap;
-  /* float:left; */
+
   background-color: rgba(0, 0, 0, 0.74);
-  height: 100%;
+  height: 31.23em;
   padding: 2em;
   width: 50%;
 }

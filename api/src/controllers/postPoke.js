@@ -20,9 +20,9 @@ const postPoke = async (req, res) => {
       !vida ||
       !ataque ||
       !defensa ||
-      !velocidad ||
-      !altura ||
-      !peso ||
+      /* !velocidad || */
+      /* !altura || */
+      /* !peso || */
       !tipos
     ) {
       res.status(400).json({ error: "Faltan datos" });
@@ -38,11 +38,11 @@ const postPoke = async (req, res) => {
         velocidad,
         altura,
         peso,
-        tipos,
       });
       await newPoke.addPokemon_types(tipos);
-
-      res.status(201).json(newPoke);
+      const {dataValues} = newPoke
+      const newPokeResponse = {...dataValues, tipos: tipos}
+      res.status(201).json(newPokeResponse);
     }
   } catch (error) {
     res.status(500).json({ error: error.message });

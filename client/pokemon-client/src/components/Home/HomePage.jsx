@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { filterPoke, orderAttack, orderPoke, setPage } from "../redux/actions";
+import { filterDB, filterPoke, orderAttack, orderPoke, setPage } from "../redux/actions";
 import Cards from "../Cards/Cards";
 import Pagination from "../Pagination/pagination";
 import style from "./HomePage.module.css";
@@ -46,6 +46,10 @@ const HomePage = () => {
     dispatch(filterPoke(event.target.value))
   }
 
+  const handleOrigen = (event) => {
+    dispatch(filterDB(event.target.value))
+  }
+
   return (
     <div className={style.container}>
       <div className={style.order}>
@@ -84,9 +88,10 @@ const HomePage = () => {
           <option value="20">shadow</option>
         </select>
         <h4>Filtrar por creacion</h4>
-        <select name="" id="" onChange={handleOrderAttack}>
+        <select name="" id="" onChange={handleOrigen}>
           <option value="A">Mostrar todos</option>
-          <option value="D">Mostrar creados</option>
+          <option value="B">Mostrar nativos de api</option>
+          <option value="C">Mostrar creados</option>
         </select>
       </div>
       <Cards

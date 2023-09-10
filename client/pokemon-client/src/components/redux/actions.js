@@ -6,6 +6,7 @@ export const SET_PAGE = "SET_PAGE";
 export const ORDER = "ORDER";
 export const ORDER_ATTACK = "ORDER_ATTACK";
 export const FILTER = "FILTER";
+export const FILTER_DB = "FILTER_DB";
 export const CREATE_POKE = "CREATE_POKE";
 
 export const createPoke = (pokemonData) => {
@@ -23,9 +24,8 @@ export const createPoke = (pokemonData) => {
   } = pokemonData;
   return async (dispatch) => {
     try {
-      const response = await axios.post(
-        endpoint,
-        {nombre,
+      const response = await axios.post(endpoint, {
+        nombre,
         imagen,
         vida,
         ataque,
@@ -33,8 +33,8 @@ export const createPoke = (pokemonData) => {
         velocidad,
         altura,
         peso,
-        tipos}
-      );
+        tipos,
+      });
       const { data } = response;
       return dispatch({
         type: CREATE_POKE,
@@ -102,4 +102,8 @@ export const orderAttack = (orden = "A") => {
 
 export const filterPoke = (types) => {
   return { type: FILTER, payload: types };
+};
+
+export const filterDB = (pokeDB) => {
+  return { type: FILTER_DB, payload: pokeDB };
 };

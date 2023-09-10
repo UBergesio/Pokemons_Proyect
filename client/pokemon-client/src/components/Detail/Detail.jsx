@@ -9,14 +9,20 @@ const Detail = () => {
   const [pokemon, setPokemon] = useState({});
 
   useEffect(() => {
-    axios.get(`${URL}?name=${name}`).then(({ data }) => {
-      if (data.nombre) {
-        setPokemon(data);
-      } else {
-        window.alert("No se puede mostrar el detalle en este momento");
+    async function fetchPokemon() {
+      try {
+        const { data } = await axios.get(`${URL}?name=${name}`);
+        if (data.nombre) {
+          setPokemon(data);
+        } else {
+          window.alert("No se puede mostrar el detalle en este momento");
+        }
+      } catch (error) {
+        console.error("Error al cargar los datos del Pokémon", error);
       }
-    });
-    return setPokemon({});
+    }
+
+    fetchPokemon();
   }, [name]);
 
   const renderizarPersonaje = (propertyName, propertyValue) => {
@@ -31,9 +37,18 @@ const Detail = () => {
     );
   };
 
+  let tiposAVisualizar = [];
+  if (pokemon.tipos) {
+    tiposAVisualizar = pokemon.tipos;
+  } else if (pokemon.Pokemon_types) {
+    tiposAVisualizar = pokemon.Pokemon_types.map((tipo) => tipo.nombre).join(
+      ", "
+    );
+  }
+
   return (
     <div className={style.divBackGround}>
-    <img className={style.img} src={pokemon.imagen} alt={pokemon.nombre} />
+      <img className={style.img} src={pokemon.imagen} alt={pokemon.nombre} />
       <div className={style.containerTexto}>
         <h6 className={style.id}>ID: {pokemon.id}</h6>
         <h2 className={style.titulo}>{pokemon.nombre}</h2>
@@ -49,7 +64,9 @@ const Detail = () => {
         <h3 className={style.description}>
           {renderizarPersonaje("Peso", pokemon.peso)}
         </h3>
-        <h3 className={style.description}>Tipos: {pokemon.tipos}</h3>
+        <h3 className={style.description}>
+          {renderizarPersonaje("Tipos", tiposAVisualizar)}
+        </h3>
       </div>
     </div>
   );
