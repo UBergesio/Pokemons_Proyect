@@ -8,6 +8,14 @@ export const ORDER_ATTACK = "ORDER_ATTACK";
 export const FILTER = "FILTER";
 export const FILTER_DB = "FILTER_DB";
 export const CREATE_POKE = "CREATE_POKE";
+export const REMOVE = "REMOVE";
+
+export const remove = (id)=>{
+  return {
+    type: REMOVE,
+    payload: id,
+  };
+}
 
 export const createPoke = (pokemonData) => {
   const endpoint = "http://localhost:3001/pokemons";

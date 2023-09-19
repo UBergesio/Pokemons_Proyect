@@ -8,6 +8,7 @@ import {
   FILTER,
   CREATE_POKE,
   FILTER_DB,
+  REMOVE,
 } from "./actions";
 
 const initialState = {
@@ -20,6 +21,14 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+case REMOVE:
+  const pokefiltrado = state.allPokemons.filter((pokemon)=> pokemon.id !== action.payload)
+  return{
+    ...state,
+    pokeFilter: pokefiltrado,
+    allPokemons: pokefiltrado
+  }
+
     case CREATE_POKE:
       return {
         ...state,

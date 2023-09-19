@@ -44,7 +44,7 @@ const NavBar = () => {
               alt={searchResult.nombre}
             />
             <h2 className={style.descriptionOrigin}>
-              Tipos: {searchResult.tiposName}
+              Agregalo a tu lista para ver mas detalles
             </h2>
           </div>
           <button className={style.btn} onClick={handleAddPokemonName}>

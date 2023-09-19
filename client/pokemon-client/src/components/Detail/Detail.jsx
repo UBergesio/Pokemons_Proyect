@@ -12,6 +12,7 @@ const Detail = () => {
     async function fetchPokemon() {
       try {
         const { data } = await axios.get(`${URL}?name=${name}`);
+       
         if (data.nombre) {
           setPokemon(data);
         } else {
